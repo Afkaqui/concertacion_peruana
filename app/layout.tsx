@@ -44,10 +44,21 @@ export const metadata: Metadata = {
 
   twitter: { card: "summary_large_image" },
 
-  // PLACEHOLDER: bloqueado a propósito mientras el sitio esté en construcción,
-  // para que Google no indexe una página delgada como primera impresión del
-  // dominio. Al lanzar, cambiar a index/follow — ver 03-PLAN-SEO-METADATOS.md §6
-  robots: { index: false, follow: false },
+  // Indexable. La página de espera es breve pero legítima: tiene título,
+  // descripción e imagen social propias, y encamina las búsquedas de marca
+  // hacia TikTok, hoy el único canal activo. Es mejor resultado que el vacío.
+  // Ver 03-PLAN-SEO-METADATOS.md §6.
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 
   icons: { icon: "/logo-192.png", apple: "/logo-192.png" },
 };
