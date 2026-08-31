@@ -76,6 +76,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="es-PE"
       className={`${inter.variable} ${serifTitulos.variable} h-full antialiased`}
     >
+      <head>
+        {/* Marca que hay JS y que se puede animar, ANTES del primer pintado.
+            Si falla, si no hay JS o si el sistema pide menos movimiento, la
+            clase no se aplica y el contenido se ve sin esperar a nada. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)" +
+              "document.documentElement.classList.add('js-anim')}catch(e){}",
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );

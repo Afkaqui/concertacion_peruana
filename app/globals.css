@@ -35,3 +35,13 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
+
+/* Realce progresivo de la entrada animada.
+   Los elementos solo se ocultan si el script síncrono del layout confirmó que
+   hay JS Y que el sistema no pide menos movimiento. Sin JS, sin soporte, o con
+   `prefers-reduced-motion`, la clase nunca se aplica y todo se ve de inmediato:
+   nunca queda contenido invisible esperando una animación que no llegará. */
+.js-anim [data-anim] {
+  opacity: 0;
+  will-change: opacity, transform;
+}
