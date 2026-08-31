@@ -37,28 +37,30 @@ export default function EntradaTexto({ children }: { children: React.ReactNode }
       const { createTimeline, stagger } = await import("animejs");
       if (!vivo || !raiz.current) return;
 
-      const q = (sel: string) => host.querySelectorAll<HTMLElement>(sel);
+      // Devuelve null cuando no hay coincidencias. Importa porque este mismo
+      // componente envuelve el 404, que usa solo parte de los marcadores:
+      // encadenar un .add() sobre una lista vacía es pedir problemas.
+      const q = (sel: string) => {
+        const els = host.querySelectorAll<HTMLElement>(`[data-anim='${sel}']`);
+        return els.length ? els : null;
+      };
 
       const tl = createTimeline({ defaults: { ease: "outExpo" } });
 
-      tl.add(q("[data-anim='marca']"), {
-        opacity: [0, 1],
-        scale: [0.94, 1],
-        duration: 900,
-      })
-        .add(
-          q("[data-anim='estado']"),
-          { opacity: [0, 1], y: [10, 0], duration: 600 },
-          "-=550"
-        )
-        .add(
-          q("[data-anim='titulo']"),
-          { opacity: [0, 1], y: [16, 0], duration: 800 },
-          "-=400"
-        )
-        // El momento con intención: tres palabras, tres entradas escalonadas
-        .add(
-          q("[data-anim='lema-palabra']"),
+      const marca = q("marca");
+      if (marca) tl.add(marca, { opacity: [0, 1], scale: [0.94, 1], duration: 900 });
+
+      const estado = q("estado");
+      if (estado) tl.add(estado, { opacity: [0, 1], y: [10, 0], duration: 600 }, "-=550");
+
+      const titulo = q("titulo");
+      if (titulo) tl.add(titulo, { opacity: [0, 1], y: [16, 0], duration: 800 }, "-=400");
+
+      // El momento con intención: tres palabras, tres entradas escalonadas
+      const lema = q("lema-palabra");
+      if (lema)
+        tl.add(
+          lema,
           {
             opacity: [0, 1],
             y: [14, 0],
@@ -67,19 +69,24 @@ export default function EntradaTexto({ children }: { children: React.ReactNode }
             delay: stagger(130),
           },
           "-=450"
-        )
-        .add(
-          q("[data-anim='filete']"),
-          { scaleX: [0, 1], opacity: [0, 1], duration: 700 },
-          "-=500"
-        )
-        .add(
-          q("[data-anim='cuerpo']"),
+        );
+
+      const filete = q("filete");
+      if (filete)
+        tl.add(filete, { scaleX: [0, 1], opacity: [0, 1], duration: 700 }, "-=500");
+
+      const cuerpo = q("cuerpo");
+      if (cuerpo)
+        tl.add(
+          cuerpo,
           { opacity: [0, 1], y: [12, 0], duration: 700, delay: stagger(90) },
           "-=450"
-        )
-        .add(
-          q("[data-anim='accion']"),
+        );
+
+      const accion = q("accion");
+      if (accion)
+        tl.add(
+          accion,
           { opacity: [0, 1], y: [12, 0], scale: [0.97, 1], duration: 700 },
           "-=400"
         );
@@ -93,5 +100,14 @@ export default function EntradaTexto({ children }: { children: React.ReactNode }
     };
   }, []);
 
-  return <div ref={raiz}>{children}</div>;
+  // `contents` saca al envoltorio del layout: sus hijos pasan a ser hijos
+  // directos del <body> flex. Sin esto, este div se interpone en la cadena
+  // flex y el `flex-1` del contenido deja de crecer — el fondo no llega abajo.
+  // El div sigue existiendo en el DOM para sostener la ref y acotar las
+  // consultas; simplemente no ocupa lugar.
+  return (
+    <div ref={raiz} className="contents">
+      {children}
+    </div>
+  );
 }

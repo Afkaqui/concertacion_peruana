@@ -64,10 +64,6 @@ export default function Home() {
             Síguenos en TikTok
           </a>
         </main>
-
-        <footer data-anim="cuerpo" className="mt-16 text-center text-sm text-gris-medio">
-          <p>concertacionperuana.pe</p>
-        </footer>
       </div>
     </EntradaTexto>
   );

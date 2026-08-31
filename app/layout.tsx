@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
+import PieDeSitio from "./PieDeSitio";
 
 // next/font descarga y auto-hospeda las fuentes en build:
 // no hay petición a terceros en tiempo de carga (RNF-02).
@@ -88,7 +89,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">
+        {children}
+        {/* Común a todas las páginas: aquí, no en cada page.tsx */}
+        <PieDeSitio />
+      </body>
     </html>
   );
 }
