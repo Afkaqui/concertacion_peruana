@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "../../_ui/Enlace";
 import { notFound } from "next/navigation";
 import { EncabezadoPagina, Seccion, Ancla } from "../../_ui/Pagina";
 import { IDEARIO, porSlug } from "../../_contenido/ideario";
+import { metadataDe } from "../../_contenido/rutas";
+import Migas from "../../_ui/Migas";
 
 // Obligatorio con `output: 'export'`: las rutas dinámicas necesitan conocer
 // todos sus parámetros en compilación (doc. 03 §1.1).
@@ -16,19 +18,7 @@ export async function generateMetadata({
   params: Promise<{ pilar: string }>;
 }): Promise<Metadata> {
   const { pilar } = await params;
-  const p = porSlug(pilar);
-  if (!p) return {};
-  return {
-    title: p.nombre,
-    description: p.descripcion,
-    alternates: { canonical: `/ideario/${p.slug}` },
-    openGraph: {
-      title: p.nombre,
-      description: p.sumario,
-      url: `/ideario/${p.slug}`,
-      type: "article",
-    },
-  };
+  return metadataDe(`/ideario/${pilar}`);
 }
 
 export default async function PaginaPilar({
@@ -45,6 +35,7 @@ export default async function PaginaPilar({
 
   return (
     <div className="flex-1 bg-verde-claro pb-16">
+      <Migas path={`/ideario/${p.slug}`} />
       <EncabezadoPagina antetitulo={`Ideario · ${i + 1} de 6`} titulo={p.nombre} />
 
       <Seccion>

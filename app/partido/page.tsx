@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "../_ui/Enlace";
 import { EncabezadoPagina, Seccion } from "../_ui/Pagina";
 import { PILARES } from "../_contenido/institucional";
+import { metadataDe } from "../_contenido/rutas";
+import Migas from "../_ui/Migas";
 
 /**
  * Subpágina del Partido de la Concertación Peruana.
@@ -17,25 +19,14 @@ import { PILARES } from "../_contenido/institucional";
  * confirmar la situación registral con documentación (doc. 02 §1.1, Bloque A).
  */
 
-export const metadata: Metadata = {
-  title: "Partido de la Concertación Peruana",
-  description:
-    "El Partido de la Concertación Peruana es el proyecto político que impulsa la Asociación de la Concertación Peruana, actualmente en proceso de constitución formal.",
-  alternates: { canonical: "/partido" },
-  openGraph: {
-    title: "Partido de la Concertación Peruana",
-    description:
-      "El proyecto político que impulsa la Asociación de la Concertación Peruana.",
-    url: "/partido",
-    type: "article",
-  },
-};
+export const metadata: Metadata = metadataDe("/partido");
 
 const PILAR_INSTITUCIONAL = PILARES[0];
 
 export default function Partido() {
   return (
     <div className="flex-1 bg-verde-claro pb-16">
+      <Migas path="/partido" />
       <EncabezadoPagina
         antetitulo="Proyecto político"
         titulo="Partido de la Concertación Peruana"

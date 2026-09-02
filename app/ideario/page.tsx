@@ -1,24 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "../_ui/Enlace";
 import { EncabezadoPagina, Seccion } from "../_ui/Pagina";
 import { IDEARIO } from "../_contenido/ideario";
+import { metadataDe } from "../_contenido/rutas";
+import Migas from "../_ui/Migas";
 
-export const metadata: Metadata = {
-  title: "Nuestro Ideario",
-  description:
-    "Los seis pilares de Concertación Peruana: Humanismo Teísta, Democracia Participativa, Fraternidad, Igualdad de Oportunidades, Identidad Nacional y Concertación.",
-  alternates: { canonical: "/ideario" },
-  openGraph: {
-    title: "Nuestro Ideario",
-    description: "Los seis pilares doctrinarios de Concertación Peruana.",
-    url: "/ideario",
-    type: "article",
-  },
-};
+export const metadata: Metadata = metadataDe("/ideario");
 
 export default function IdearioIndice() {
   return (
     <div className="flex-1 bg-verde-claro pb-16">
+      <Migas path="/ideario" />
       <EncabezadoPagina
         antetitulo="Ideario"
         titulo="Seis pilares, una sola convicción"

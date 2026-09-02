@@ -1,24 +1,15 @@
 import type { Metadata } from "next";
 import { EncabezadoPagina, Seccion, Tarjeta } from "../_ui/Pagina";
 import { VISION, MISION, PILARES, MATRIZ } from "../_contenido/institucional";
+import { metadataDe } from "../_contenido/rutas";
+import Migas from "../_ui/Migas";
 
-export const metadata: Metadata = {
-  title: "Institucional",
-  description:
-    "Visión, misión y objetivos estratégicos de la Asociación de la Concertación Peruana: institucionalidad, participación ciudadana, desarrollo sostenible y transparencia.",
-  alternates: { canonical: "/institucional" },
-  openGraph: {
-    title: "Institucional",
-    description:
-      "Visión, misión y objetivos estratégicos de la Asociación de la Concertación Peruana.",
-    url: "/institucional",
-    type: "article",
-  },
-};
+export const metadata: Metadata = metadataDe("/institucional");
 
 export default function Institucional() {
   return (
     <div className="flex-1 bg-verde-claro pb-16">
+      <Migas path="/institucional" />
       <EncabezadoPagina
         antetitulo="Propuesta institucional"
         titulo="Visión, misión y objetivos estratégicos"

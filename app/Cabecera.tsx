@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "./_ui/Enlace";
 
 /**
  * Cabecera común. Server Component puro: sin menú desplegable ni JS de cliente.

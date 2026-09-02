@@ -42,6 +42,9 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: "Concertación Peruana",
     description: "Dios, Patria y Familia. Un Perú para todos, que se construye unidos.",
+    // Respaldo: cualquier página que no declare la suya hereda esta
+    images: [{ url: "/og/inicio.png", width: 1200, height: 630,
+               alt: "Concertación Peruana — Dios, Patria, Familia" }],
   },
 
   twitter: { card: "summary_large_image" },
@@ -92,7 +95,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full flex flex-col font-sans">
         <Cabecera />
-        {children}
+        {/* Landmark único de la página: axe exige exactamente un <main> */}
+        <main className="flex flex-1 flex-col">{children}</main>
         {/* Común a todas las páginas: aquí, no en cada page.tsx */}
         <PieDeSitio />
       </body>

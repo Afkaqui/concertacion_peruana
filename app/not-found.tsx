@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./_ui/Enlace";
 import Image from "next/image";
 import type { Metadata } from "next";
 import EntradaTexto from "./EntradaTexto";
@@ -17,13 +17,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
 };
 
-const TIKTOK_URL = "https://www.tiktok.com/@concertacionperuana";
 
 export default function NotFound() {
   return (
     <EntradaTexto>
       <div className="flex flex-1 flex-col items-center justify-center bg-verde-claro px-6 py-16">
-        <main className="flex w-full max-w-lg flex-col items-center text-center">
+        <div className="flex w-full max-w-lg flex-col items-center text-center">
           <div data-anim="marca" className="w-20 opacity-70">
             <Image
               src="/logo-384.png"
@@ -54,9 +53,8 @@ export default function NotFound() {
           />
 
           <p data-anim="cuerpo" className="text-base text-balance text-gris-medio">
-            La dirección que buscas no existe o cambió de lugar. Nuestro sitio
-            todavía está en construcción, así que por ahora hay poco que
-            encontrar.
+            La dirección que buscas no existe o cambió de lugar. Desde aquí
+            puedes volver al inicio o ir directamente a lo que quizá buscabas.
           </p>
 
           <div
@@ -70,16 +68,20 @@ export default function NotFound() {
               Volver al inicio
             </Link>
 
-            <a
-              href={TIKTOK_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-verde/30 px-7 py-3 font-medium text-verde-profundo transition-colors hover:bg-white focus-visible:ring-2 focus-visible:ring-verde-profundo focus-visible:ring-offset-2 focus-visible:outline-none"
+            <Link
+              href="/ideario"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-verde/40 px-7 py-3 font-medium text-verde-profundo transition-colors hover:bg-white focus-visible:ring-2 focus-visible:ring-verde-profundo focus-visible:ring-offset-2 focus-visible:outline-none"
             >
-              Síguenos en TikTok
-            </a>
+              Ideario
+            </Link>
+            <Link
+              href="/partido"
+              className="inline-flex min-h-11 items-center justify-center rounded-full border border-verde/40 px-7 py-3 font-medium text-verde-profundo transition-colors hover:bg-white focus-visible:ring-2 focus-visible:ring-verde-profundo focus-visible:ring-offset-2 focus-visible:outline-none"
+            >
+              El Partido
+            </Link>
           </div>
-        </main>
+        </div>
       </div>
     </EntradaTexto>
   );

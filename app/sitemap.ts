@@ -1,29 +1,21 @@
 import type { MetadataRoute } from "next";
-import { IDEARIO } from "./_contenido/ideario";
-
-const SITE_URL = "https://concertacionperuana.pe";
+import { RUTAS, SITE_URL, EDICION, urlOg } from "./_contenido/rutas";
 
 // Obligatorio bajo `output: 'export'` — mismo motivo que en robots.ts.
 export const dynamic = "force-static";
 
-// `lastModified` lleva la fecha REAL de edición del contenido, no la del
-// despliegue: Google la contrasta contra la modificación efectiva de la
-// página, y un `new Date()` automático degrada la señal.
-//
-// `priority` y `changeFrequency` se omiten a propósito: Google los ignora.
-const EDICION = "2026-09-01";
-
+/**
+ * El sitemap se deriva de la MISMA lista que alimenta los metadatos
+ * (_contenido/rutas.ts), así que no puede quedarse desfasado.
+ *
+ * `images` publica la tarjeta social de cada página como sitemap de imágenes.
+ * `priority` y `changeFrequency` se omiten a propósito: Google los ignora.
+ * `lastModified` lleva la fecha real de edición, no la del despliegue.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const rutas = [
-    "",
-    "/institucional",
-    "/ideario",
-    ...IDEARIO.map((p) => `/ideario/${p.slug}`),
-    "/partido",
-  ];
-
-  return rutas.map((path) => ({
-    url: `${SITE_URL}${path}`,
+  return RUTAS.map((r) => ({
+    url: `${SITE_URL}${r.path}`,
     lastModified: EDICION,
+    images: [urlOg(r.og)],
   }));
 }

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import Link from "./_ui/Enlace";
 
 /**
  * Pie de sitio común (va en el layout raíz).

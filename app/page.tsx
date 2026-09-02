@@ -1,9 +1,14 @@
-import Link from "next/link";
+import Link from "./_ui/Enlace";
 import TrebolWebGL from "./TrebolWebGL";
 import EntradaTexto from "./EntradaTexto";
 import { Seccion } from "./_ui/Pagina";
 import { IDEARIO } from "./_contenido/ideario";
 import { VISION } from "./_contenido/institucional";
+import DatosEstructurados from "./_ui/DatosEstructurados";
+import type { Metadata } from "next";
+import { metadataDe } from "./_contenido/rutas";
+
+export const metadata: Metadata = metadataDe("");
 
 const LEMA = ["Dios", "·", "Patria", "·", "Familia"];
 
@@ -19,6 +24,8 @@ const EJES = [
 export default function Home() {
   return (
     <div className="flex-1 bg-verde-claro pb-16">
+      <DatosEstructurados />
+
       {/* ── Portada ─────────────────────────────────────────────── */}
       <EntradaTexto>
         <section className="mx-auto flex w-full max-w-2xl flex-col items-center px-6 pt-14 pb-10 text-center sm:pt-20">
