@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
+import Cabecera from "./Cabecera";
 import PieDeSitio from "./PieDeSitio";
 
 // next/font descarga y auto-hospeda las fuentes en build:
@@ -90,6 +91,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="min-h-full flex flex-col font-sans">
+        <Cabecera />
         {children}
         {/* Común a todas las páginas: aquí, no en cada page.tsx */}
         <PieDeSitio />
