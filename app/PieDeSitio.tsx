@@ -8,6 +8,9 @@ import Link from "./_ui/Enlace";
  * (doc. 02 §1.4), para añadir aquí cuando se confirmen:
  *   - Correo institucional, WhatsApp y sedes.
  *   - Enlace a la política de privacidad (RNF-11).
+ *   - YouTube: la organización quiere abrir canal (conversación del 2/9/2026).
+ *     Cuando exista, se añade una entrada más a REDES con su icono. No se deja
+ *     un enlace muerto entretanto.
  *
  * La nota de entidad no es decorativa: distingue a la Asociación (que existe)
  * del Partido (en constitución), tal como establece la fuente institucional.

@@ -7,6 +7,8 @@ import { VISION } from "./_contenido/institucional";
 import DatosEstructurados from "./_ui/DatosEstructurados";
 import type { Metadata } from "next";
 import { metadataDe } from "./_contenido/rutas";
+import CarruselActividades from "./_ui/CarruselActividades";
+import { ACTIVIDADES } from "./_contenido/actividades";
 
 export const metadata: Metadata = metadataDe("");
 
@@ -112,6 +114,14 @@ export default function Home() {
           ))}
         </ul>
       </Seccion>
+
+      {/* ── Actividades ─────────────────────────────────────────
+          No se renderiza mientras ACTIVIDADES esté vacío. */}
+      <CarruselActividades
+        actividades={ACTIVIDADES}
+        titulo="Nuestras actividades"
+        descripcion="Asambleas, jornadas de formación y encuentros con las bases en todo el país."
+      />
 
       {/* ── Visión ──────────────────────────────────────────────── */}
       <Seccion titulo="Hacia dónde vamos">
