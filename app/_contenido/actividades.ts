@@ -30,6 +30,8 @@ export type Actividad = {
   lugar?: string;
   /** ISO: "2026-09-02" */
   fecha?: string;
+  /** Si se indica, el título de la tarjeta enlaza aquí */
+  href?: string;
   ancho: number;
   alto: number;
 };
@@ -109,3 +111,39 @@ export function fechaLarga(iso?: string): string | undefined {
   if (!a || !m || !d) return undefined;
   return `${d} de ${MESES[m - 1]} de ${a}`;
 }
+
+
+/**
+ * Tarjetas del Ideario — lo que muestra el carrusel MIENTRAS no hay fotografía
+ * de actividades.
+ *
+ * No son fotos ni lo aparentan: son citas literales del Ideario compuestas con
+ * la identidad de la organización. Bajo un título como "Nuestras actividades",
+ * una foto de banco afirmaría que esa actividad ocurrió; una cita no afirma
+ * nada que no sea cierto.
+ *
+ * Se generan con `python scripts/generar-tarjetas-ideario.py`.
+ *
+ * CUANDO LLEGUEN LAS FOTOS: en app/page.tsx, cambiar el import y el prop a
+ * ACTIVIDADES y ajustar el título del carrusel a "Nuestras actividades".
+ */
+export const DESTACADOS_IDEARIO: Actividad[] = [
+  { src: "/ideario/humanismo-teista.png", titulo: "Humanismo Teísta",
+    alt: "Cita del Ideario: todos somos iguales en dignidad, en derechos y en oportunidades",
+    href: "/ideario/humanismo-teista", ancho: 1500, alto: 1000 },
+  { src: "/ideario/democracia-participativa.png", titulo: "Democracia Participativa",
+    alt: "Cita del Ideario: una democracia auténtica da voz a quienes rara vez son escuchados",
+    href: "/ideario/democracia-participativa", ancho: 1500, alto: 1000 },
+  { src: "/ideario/fraternidad.png", titulo: "Fraternidad",
+    alt: "Cita del Ideario: es amar al prójimo como a nosotros mismos",
+    href: "/ideario/fraternidad", ancho: 1500, alto: 1000 },
+  { src: "/ideario/igualdad-de-oportunidades.png", titulo: "Igualdad de Oportunidades",
+    alt: "Cita del Ideario: las desigualdades son construcciones sociales e históricas y se pueden transformar",
+    href: "/ideario/igualdad-de-oportunidades", ancho: 1500, alto: 1000 },
+  { src: "/ideario/identidad-nacional.png", titulo: "Identidad Nacional",
+    alt: "Cita del Ideario: un solo Perú, diverso y fraterno",
+    href: "/ideario/identidad-nacional", ancho: 1500, alto: 1000 },
+  { src: "/ideario/concertacion.png", titulo: "Concertación",
+    alt: "Cita del Ideario: no es el camino más corto, pero sí el más seguro para legitimar decisiones",
+    href: "/ideario/concertacion", ancho: 1500, alto: 1000 },
+];

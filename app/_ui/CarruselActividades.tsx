@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "./Enlace";
 import { fechaLarga, type Actividad } from "../_contenido/actividades";
 
 /**
@@ -173,9 +174,18 @@ export default function CarruselActividades({
                 className="aspect-[3/2] w-full object-cover"
               />
               <figcaption className="p-5">
-                <p className="font-serif text-lg leading-snug font-semibold text-verde-profundo">
-                  {a.titulo}
-                </p>
+                {a.href ? (
+                  <Link
+                    href={a.href}
+                    className="inline-flex min-h-11 items-center font-serif text-lg leading-snug font-semibold text-verde-profundo underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-verde-profundo focus-visible:ring-offset-2 focus-visible:outline-none"
+                  >
+                    {a.titulo} →
+                  </Link>
+                ) : (
+                  <p className="font-serif text-lg leading-snug font-semibold text-verde-profundo">
+                    {a.titulo}
+                  </p>
+                )}
                 {(a.lugar || a.fecha) && (
                   <p className="mt-1 text-sm text-gris-medio">
                     {[a.lugar, fechaLarga(a.fecha)].filter(Boolean).join(" · ")}

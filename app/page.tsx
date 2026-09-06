@@ -8,7 +8,7 @@ import DatosEstructurados from "./_ui/DatosEstructurados";
 import type { Metadata } from "next";
 import { metadataDe } from "./_contenido/rutas";
 import CarruselActividades from "./_ui/CarruselActividades";
-import { ACTIVIDADES } from "./_contenido/actividades";
+import { DESTACADOS_IDEARIO } from "./_contenido/actividades";
 
 export const metadata: Metadata = metadataDe("");
 
@@ -115,12 +115,14 @@ export default function Home() {
         </ul>
       </Seccion>
 
-      {/* ── Actividades ─────────────────────────────────────────
-          No se renderiza mientras ACTIVIDADES esté vacío. */}
+      {/* ── Carrusel ────────────────────────────────────────────
+          Muestra las citas del Ideario mientras no hay fotografía real.
+          Cuando lleguen las fotos: importar ACTIVIDADES en lugar de
+          DESTACADOS_IDEARIO y cambiar el título a "Nuestras actividades". */}
       <CarruselActividades
-        actividades={ACTIVIDADES}
-        titulo="Nuestras actividades"
-        descripcion="Asambleas, jornadas de formación y encuentros con las bases en todo el país."
+        actividades={DESTACADOS_IDEARIO}
+        titulo="El Ideario en seis ideas"
+        descripcion="Lo que nos sostiene, en las palabras del propio Ideario."
       />
 
       {/* ── Visión ──────────────────────────────────────────────── */}
