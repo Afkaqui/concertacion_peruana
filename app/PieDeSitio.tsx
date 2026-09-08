@@ -41,6 +41,7 @@ const SECCIONES = [
   { href: "/institucional", texto: "Institucional" },
   { href: "/ideario", texto: "Ideario" },
   { href: "/partido", texto: "El Partido" },
+  { href: "/actualidad", texto: "Actualidad" },
 ];
 
 const ANIO = 2026;

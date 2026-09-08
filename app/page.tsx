@@ -8,7 +8,7 @@ import DatosEstructurados from "./_ui/DatosEstructurados";
 import type { Metadata } from "next";
 import { metadataDe } from "./_contenido/rutas";
 import CarruselActividades from "./_ui/CarruselActividades";
-import { DESTACADOS_IDEARIO } from "./_contenido/actividades";
+import { FOTOS_PERU } from "./_contenido/actividades";
 
 export const metadata: Metadata = metadataDe("");
 
@@ -117,12 +117,13 @@ export default function Home() {
 
       {/* ── Carrusel ────────────────────────────────────────────
           Muestra las citas del Ideario mientras no hay fotografía real.
-          Cuando lleguen las fotos: importar ACTIVIDADES en lugar de
-          DESTACADOS_IDEARIO y cambiar el título a "Nuestras actividades". */}
+          Cuando lleguen las fotos de las bases: importar ACTIVIDADES en lugar
+          de FOTOS_PERU y cambiar el título a "Nuestras actividades".
+          También está DESTACADOS_IDEARIO (citas del Ideario) como alternativa. */}
       <CarruselActividades
-        actividades={DESTACADOS_IDEARIO}
-        titulo="El Ideario en seis ideas"
-        descripcion="Lo que nos sostiene, en las palabras del propio Ideario."
+        actividades={FOTOS_PERU}
+        titulo="El Perú que nos convoca"
+        descripcion="Territorio, cultura y trabajo del país sobre el que queremos construir."
       />
 
       {/* ── Visión ──────────────────────────────────────────────── */}

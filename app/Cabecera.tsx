@@ -3,14 +3,17 @@ import Link from "./_ui/Enlace";
 
 /**
  * Cabecera común. Server Component puro: sin menú desplegable ni JS de cliente.
- * Con tres enlaces cortos la fila cabe en 360 px, así que un hamburguesa solo
- * añadiría peso y un estado más que mantener (RNF-01, RNF-04).
+ * Con cuatro enlaces la fila exige 428 px y no cabe en móvil (medido). En vez
+ * de un menú desplegable —que añade JS de cliente y un estado más— el menú se
+ * desplaza en horizontal: la cabecera se queda en 61 px y todos los enlaces
+ * siguen alcanzables (RNF-01, RNF-04).
  */
 
 const ENLACES = [
   { href: "/institucional", texto: "Institucional" },
   { href: "/ideario", texto: "Ideario" },
-  { href: "/partido", texto: "El Partido" },
+  { href: "/partido", texto: "Partido" },
+  { href: "/actualidad", texto: "Actualidad" },
 ];
 
 export default function Cabecera() {
@@ -37,8 +40,8 @@ export default function Cabecera() {
           <span className="sr-only sm:hidden">Concertación Peruana — ir al inicio</span>
         </Link>
 
-        <nav aria-label="Principal">
-          <ul className="flex items-center gap-1 text-sm">
+        <nav aria-label="Principal" className="min-w-0 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <ul className="flex w-max items-center gap-1 text-sm">
             {ENLACES.map((e) => (
               <li key={e.href}>
                 <Link

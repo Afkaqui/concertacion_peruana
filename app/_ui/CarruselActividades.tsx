@@ -191,6 +191,21 @@ export default function CarruselActividades({
                     {[a.lugar, fechaLarga(a.fecha)].filter(Boolean).join(" · ")}
                   </p>
                 )}
+                {/* La atribución no es opcional: la exige la licencia CC */}
+                {a.credito && (
+                  <p className="mt-3 text-xs text-gris-medio">
+                    Foto:{" "}
+                    <a
+                      href={a.credito.pagina}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2 hover:text-verde-profundo"
+                    >
+                      {a.credito.autor}
+                    </a>{" "}
+                    · {a.credito.licencia} · Wikimedia Commons
+                  </p>
+                )}
               </figcaption>
             </figure>
           </div>

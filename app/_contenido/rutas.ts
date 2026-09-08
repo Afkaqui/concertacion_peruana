@@ -84,6 +84,16 @@ export const RUTAS: Ruta[] = [
     ],
   })),
   {
+    path: "/actualidad",
+    og: "actualidad",
+    titulo: "Actualidad",
+    descripcion:
+      "Noticias, comunicados y actividades de Concertación Peruana. Recogemos aquí lo más importante de lo que publicamos en nuestras redes.",
+    ogAlt: "Actualidad — lo que venimos publicando",
+    palabrasClave: [...COMUNES, "noticias", "comunicados", "actividades"],
+    migas: [{ nombre: "Actualidad", path: "/actualidad" }],
+  },
+  {
     path: "/partido",
     og: "partido",
     titulo: "Partido de la Concertación Peruana",

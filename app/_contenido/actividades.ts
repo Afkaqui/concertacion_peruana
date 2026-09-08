@@ -32,6 +32,8 @@ export type Actividad = {
   fecha?: string;
   /** Si se indica, el título de la tarjeta enlaza aquí */
   href?: string;
+  /** Atribución, obligatoria en las fotos con licencia Creative Commons */
+  credito?: { autor: string; licencia: string; pagina: string };
   ancho: number;
   alto: number;
 };
@@ -147,3 +149,26 @@ export const DESTACADOS_IDEARIO: Actividad[] = [
     alt: "Cita del Ideario: no es el camino más corto, pero sí el más seguro para legitimar decisiones",
     href: "/ideario/concertacion", ancho: 1500, alto: 1000 },
 ];
+
+
+/**
+ * Fotografía del Perú (Wikimedia Commons) — territorio y sectores productivos.
+ *
+ * NO son actividades de la organización y el título del carrusel no lo insinúa.
+ * Ilustran el país del que habla el Ideario; presentarlas bajo "Nuestras
+ * actividades" sí afirmaría hechos que no ocurrieron.
+ *
+ * La atribución se muestra en cada pie: es condición de la licencia CC, no un
+ * detalle opcional. Se generan con `python scripts/descargar-fotos-peru.py`.
+ */
+import { CREDITOS } from "./creditos";
+
+export const FOTOS_PERU: Actividad[] = CREDITOS.map((c) => ({
+  src: `/peru/${c.nombre}.jpg`,
+  alt: `${c.titulo}: ${c.pie}`,
+  titulo: c.titulo,
+  lugar: c.pie,
+  ancho: 1400,
+  alto: 933,
+  credito: { autor: c.autor, licencia: c.licencia, pagina: c.pagina },
+}));
