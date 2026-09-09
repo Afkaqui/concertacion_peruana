@@ -41,6 +41,13 @@ export type Publicacion = {
   url: string;
   /** Muestra el botón para cargar la publicación incrustada */
   incrustar?: boolean;
+  /**
+   * Miniatura en la tarjeta. Descárgala con:
+   *   python scripts/portada-publicacion.py <slug> <url>
+   * (funciona con TikTok y YouTube; en Facebook e Instagram guarda la imagen
+   * a mano en public/publicaciones/, no exponen miniatura sin token)
+   */
+  imagen?: string;
 };
 
 export const PUBLICACIONES: Publicacion[] = [
@@ -54,6 +61,7 @@ export const PUBLICACIONES: Publicacion[] = [
   //   red: "facebook",
   //   url: "https://www.facebook.com/61582546580948/posts/XXXXXXXXXX",
   //   incrustar: true,
+  //   imagen: "/publicaciones/2026-09-08-encuentro-bases.jpg",
   // },
   // {
   //   slug: "2026-09-05-fiestas-patrias",
@@ -90,6 +98,7 @@ export const PUBLICACIONES: Publicacion[] = [
     fecha: "2026-08-05",
     red: "tiktok",
     url: "https://www.tiktok.com/@concertacionperuana/video/7670563775447076117",
+    imagen: "/publicaciones/2026-08-05-primer-video.jpg",
     incrustar: true,
   },
 

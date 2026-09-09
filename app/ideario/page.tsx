@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "../_ui/Enlace";
-import { EncabezadoPagina, Seccion } from "../_ui/Pagina";
+import { Seccion } from "../_ui/Pagina";
 import { IDEARIO } from "../_contenido/ideario";
 import { metadataDe } from "../_contenido/rutas";
+import Portada from "../_ui/Portada";
 import Migas from "../_ui/Migas";
 
 export const metadata: Metadata = metadataDe("/ideario");
@@ -11,7 +12,8 @@ export default function IdearioIndice() {
   return (
     <div className="flex-1 bg-verde-claro pb-16">
       <Migas path="/ideario" />
-      <EncabezadoPagina
+      <Portada
+        src="/portadas/ideario.jpg"
         antetitulo="Ideario"
         titulo="Seis pilares, una sola convicción"
         entradilla="Somos una organización humanista teísta, democrática participativa, concertadora y fraterna. Esto es lo que nos sostiene."

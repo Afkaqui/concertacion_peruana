@@ -51,6 +51,15 @@ FOTOS = [
      "Costa", "Acantilado de la Costa Verde, Lima."),
 ]
 
+# Portadas de sección: una imagen ancha por página, en public/portadas/
+# (mismo criterio: solo CC0, sin personas identificables)
+PORTADAS = [
+    ("ideario", "Cusco, Peru (Unsplash JaqX7DfKySs).jpg"),
+    ("partido", "Mighty peak above clouds (Unsplash).jpg"),
+    ("institucional", "Inca Trail mountain (Unsplash).jpg"),
+    ("actualidad", "Sun over green mountains (Unsplash).jpg"),
+]
+
 # Licencias que NO exigen mostrar autoría junto a la imagen
 SIN_CREDITO = ("cc0", "public domain", "pd-")
 
@@ -175,7 +184,37 @@ def main():
             + json.dumps(creditos, ensure_ascii=False, indent=2) + ";\n"
         )
 
-    print(f"  {'TOTAL':<20}{total:>9,} B  ({total/1024:.0f} KB)")
+    # ── Portadas de sección (recorte panorámico 21:9)
+    dir_port = os.path.join(RAIZ, "public", "portadas")
+    os.makedirs(dir_port, exist_ok=True)
+    for nombre, archivo in PORTADAS:
+        destino = os.path.join(dir_port, f"{nombre}.jpg")
+        if os.path.exists(destino):
+            print(f"  portadas/{nombre}.jpg{'':<6}{os.path.getsize(destino):>9,} B   (ya estaba)")
+            continue
+        m = metadatos(archivo)
+        if not m:
+            print(f"  portadas/{nombre}: NO ENCONTRADO ({archivo})")
+            continue
+        if any(t in m["licencia"].lower() for t in SIN_CREDITO) is False:
+            print(f"  !! portadas/{nombre}: {m['licencia']} exige atribución; se descarta")
+            continue
+        req = urllib.request.Request(m["url"], headers=UA)
+        img = Image.open(io.BytesIO(urllib.request.urlopen(req, timeout=90).read())).convert("RGB")
+        w, h = img.size
+        obj = 21 / 9
+        if w / h > obj:
+            nw = int(h * obj); img = img.crop(((w - nw) // 2, 0, (w - nw) // 2 + nw, h))
+        else:
+            nh = int(w / obj); img = img.crop((0, int((h - nh) * 0.35), w, int((h - nh) * 0.35) + nh))
+        img = img.resize((1600, int(1600 / obj)), Image.LANCZOS)
+        for q in (74, 68, 62, 56):
+            img.save(destino, "JPEG", quality=q, optimize=True, progressive=True)
+            if os.path.getsize(destino) <= 220_000:
+                break
+        print(f"  portadas/{nombre}.jpg{'':<6}{os.path.getsize(destino):>9,} B   {m['licencia']}")
+
+    print(f"  {'TOTAL carrusel':<20}{total:>9,} B  ({total/1024:.0f} KB)")
 
 
 if __name__ == "__main__":

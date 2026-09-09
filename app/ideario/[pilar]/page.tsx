@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
 import Link from "../../_ui/Enlace";
 import { notFound } from "next/navigation";
-import { EncabezadoPagina, Seccion, Ancla } from "../../_ui/Pagina";
+import { Seccion, Ancla } from "../../_ui/Pagina";
 import { IDEARIO, porSlug } from "../../_contenido/ideario";
 import { metadataDe } from "../../_contenido/rutas";
 import Migas from "../../_ui/Migas";
+import Portada from "../../_ui/Portada";
+
+/** Fotografía de portada, una por pilar. */
+const PORTADAS_PILAR = [
+  "/peru/sierra.jpg",
+  "/peru/andes.jpg",
+  "/peru/campo.jpg",
+  "/peru/costa.jpg",
+  "/peru/turismo.jpg",
+  "/portadas/ideario.jpg",
+];
 
 // Obligatorio con `output: 'export'`: las rutas dinámicas necesitan conocer
 // todos sus parámetros en compilación (doc. 03 §1.1).
@@ -36,7 +47,13 @@ export default async function PaginaPilar({
   return (
     <div className="flex-1 bg-verde-claro pb-16">
       <Migas path={`/ideario/${p.slug}`} />
-      <EncabezadoPagina antetitulo={`Ideario · ${i + 1} de 6`} titulo={p.nombre} />
+      {/* Una foto por pilar, no su tarjeta de cita: esa lleva la misma frase
+          que el <Ancla> de abajo y se leería dos veces */}
+      <Portada
+        src={PORTADAS_PILAR[i % PORTADAS_PILAR.length]}
+        antetitulo={`Ideario · ${i + 1} de 6`}
+        titulo={p.nombre}
+      />
 
       <Seccion>
         <Ancla>«{p.ancla}»</Ancla>

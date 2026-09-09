@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { EncabezadoPagina, Seccion, Tarjeta } from "../_ui/Pagina";
+import { Seccion, Tarjeta } from "../_ui/Pagina";
 import { VISION, MISION, PILARES, MATRIZ } from "../_contenido/institucional";
 import { metadataDe } from "../_contenido/rutas";
+import Portada from "../_ui/Portada";
 import Migas from "../_ui/Migas";
 
 export const metadata: Metadata = metadataDe("/institucional");
@@ -10,7 +11,8 @@ export default function Institucional() {
   return (
     <div className="flex-1 bg-verde-claro pb-16">
       <Migas path="/institucional" />
-      <EncabezadoPagina
+      <Portada
+        src="/portadas/institucional.jpg"
         antetitulo="Propuesta institucional"
         titulo="Visión, misión y objetivos estratégicos"
         entradilla="La base político-programática que orienta nuestro trabajo y que sostiene el proyecto del Partido de la Concertación Peruana."

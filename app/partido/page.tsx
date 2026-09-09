@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "../_ui/Enlace";
-import { EncabezadoPagina, Seccion } from "../_ui/Pagina";
+import { Seccion } from "../_ui/Pagina";
 import { PILARES } from "../_contenido/institucional";
 import { metadataDe } from "../_contenido/rutas";
+import Portada from "../_ui/Portada";
 import Migas from "../_ui/Migas";
 
 /**
@@ -27,7 +28,8 @@ export default function Partido() {
   return (
     <div className="flex-1 bg-verde-claro pb-16">
       <Migas path="/partido" />
-      <EncabezadoPagina
+      <Portada
+        src="/portadas/partido.jpg"
         antetitulo="Proyecto político"
         titulo="Partido de la Concertación Peruana"
         entradilla="La expresión política del trabajo que venimos construyendo desde la Asociación de la Concertación Peruana."

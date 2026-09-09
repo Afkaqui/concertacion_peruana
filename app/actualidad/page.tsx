@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { EncabezadoPagina, Seccion } from "../_ui/Pagina";
+import { Seccion } from "../_ui/Pagina";
+import Portada from "../_ui/Portada";
+import Image from "next/image";
 import Migas from "../_ui/Migas";
 import IncrustadoRed from "../_ui/IncrustadoRed";
 import { metadataDe } from "../_contenido/rutas";
@@ -24,7 +26,8 @@ export default function Actualidad() {
   return (
     <div className="flex-1 bg-verde-claro pb-16">
       <Migas path="/actualidad" />
-      <EncabezadoPagina
+      <Portada
+        src="/portadas/actualidad.jpg"
         antetitulo="Actualidad"
         titulo="Lo que venimos publicando"
         entradilla="Recogemos aquí lo más importante de lo que compartimos en nuestras redes."
@@ -38,8 +41,20 @@ export default function Actualidad() {
               return (
                 <li
                   key={p.slug}
-                  className="rounded-2xl border border-verde/15 bg-white p-6 sm:p-7"
+                  className="overflow-hidden rounded-2xl border border-verde/15 bg-white sm:flex"
                 >
+                  {p.imagen && (
+                    <Image
+                      src={p.imagen}
+                      alt=""
+                      width={900}
+                      height={600}
+                      loading="lazy"
+                      className="aspect-[3/2] w-full object-cover sm:aspect-auto sm:w-56 sm:shrink-0"
+                    />
+                  )}
+
+                  <div className="p-6 sm:p-7">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gris-medio">
                     <span className="inline-flex items-center gap-1.5 font-medium text-verde-profundo">
                       <svg
@@ -76,6 +91,7 @@ export default function Actualidad() {
                     {p.incrustar && (
                       <IncrustadoRed red={p.red} url={p.url} titulo={p.titulo} />
                     )}
+                  </div>
                   </div>
                 </li>
               );
