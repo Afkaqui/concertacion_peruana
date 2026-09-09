@@ -2,11 +2,17 @@
 Descarga fotografía del Perú desde Wikimedia Commons para el carrusel.
 
 POR QUÉ COMMONS Y NO UN BANCO DE IMÁGENES:
-  - La licencia es verificable y la autoría queda registrada. En un sitio de
-    organización política, poder acreditar el origen de cada imagen importa.
+  - La licencia es verificable. En un sitio de organización política, poder
+    acreditar el origen de cada imagen importa si alguien pregunta.
   - Se evitan fotos con personas identificables: en un contexto político,
     la imagen de alguien reconocible puede leerse como respaldo suyo, y los
     bancos comerciales lo restringen justamente por eso.
+
+SOLO SE ACEPTAN CC0 Y DOMINIO PÚBLICO. Las licencias CC BY y CC BY-SA exigen
+mostrar la autoría junto a la imagen, y ese pie resultaba intrusivo en el
+carrusel. Con CC0 no hace falta crédito y el pie desaparece — legalmente, no
+por omisión. El script AVISA si una licencia exige atribución, para que nadie
+añada una imagen CC BY y se quede sin acreditar por descuido.
 
 Las imágenes ilustran el territorio y los sectores productivos del país.
 NO se presentan como actividades de la organización.
@@ -33,20 +39,46 @@ UA = {"User-Agent": "ConcertacionPeruanaWeb/1.0 (sitio institucional)"}
 
 # (nombre de salida, título del archivo en Commons, título visible, pie)
 FOTOS = [
-    ("agricultura", "Peru terrace farming.JPG",
-     "Agricultura", "Andenería, una tecnología agrícola de siglos."),
-    ("sierra", "Tullparaju mountain and Tullparaju lake.jpg",
-     "Sierra", "Cordillera Blanca, Áncash."),
-    ("pesqueria", "Puerto de Paracas, Perú, 2019-10-17.jpg",
-     "Pesquería", "Puerto de Paracas, Ica."),
-    ("turismo", "Machu Picchu Peru 100.jpg",
-     "Turismo", "Machu Picchu, Cusco."),
-    ("ciudad", "Lima Peru City Skyline 2013.jpg",
-     "Ciudad", "Lima, capital y punto de encuentro del país."),
+    ("turismo", "Machu Picchu, Peru (Unsplash T8tL9 1DRWA).jpg",
+     "Patrimonio", "Machu Picchu, Cusco."),
+    ("sierra", "Colca Canyon, Chivay, Peru (Unsplash).jpg",
+     "Sierra", "Cañón del Colca, Arequipa."),
+    ("andes", "Mountain valley in the Andes (Unsplash).jpg",
+     "Territorio", "Valle andino."),
+    ("campo", "Urubamba Province, Peru (Unsplash).jpg",
+     "Diversidad", "Maíces nativos del valle de Urubamba, Cusco."),
+    ("costa", "La Marina Lighthouse cliffside (Unsplash).jpg",
+     "Costa", "Acantilado de la Costa Verde, Lima."),
 ]
+
+# Licencias que NO exigen mostrar autoría junto a la imagen
+SIN_CREDITO = ("cc0", "public domain", "pd-")
+
+
+CACHE = os.path.join(RAIZ, "scripts", ".cache-commons.json")
+
+
+def _cache_leer():
+    try:
+        return json.load(io.open(CACHE, encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _cache_escribir(d):
+    json.dump(d, io.open(CACHE, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
 
 def metadatos(titulo):
+    """Consulta Commons, con caché en disco.
+
+    Reejecutar el script solo para cambiar un pie de foto no debe volver a
+    golpear la API: Wikimedia responde 429 si se insiste, y además la licencia
+    y la autoría de un archivo no cambian.
+    """
+    c = _cache_leer()
+    if titulo in c:
+        return c[titulo]
     q = urllib.parse.urlencode({
         "action": "query", "format": "json", "titles": f"File:{titulo}",
         "prop": "imageinfo", "iiprop": "url|size|extmetadata", "iiurlwidth": "1800",
@@ -67,12 +99,15 @@ def metadatos(titulo):
         t = re.sub(r"\d{1,2}:\d{2},.*$", "", t)      # sello de fecha en adelante
         t = re.sub(r"\s{2,}", " ", t)
         return t.strip(" ,;·")
-    return {
+    m = {
         "url": ii.get("thumburl") or ii.get("url"),
         "autor": limpiar(em.get("Artist", {}).get("value", "")) or "Autor no indicado",
         "licencia": limpiar(em.get("LicenseShortName", {}).get("value", "")) or "Ver Commons",
         "pagina": f"https://commons.wikimedia.org/wiki/{urllib.parse.quote('File:' + titulo)}",
     }
+    c[titulo] = m
+    _cache_escribir(c)
+    return m
 
 
 def recortar_3x2(img, ancho=1400):
@@ -97,26 +132,37 @@ def main():
             print(f"  {nombre}: NO ENCONTRADO ({archivo})")
             continue
 
-        req = urllib.request.Request(m["url"], headers=UA)
-        datos = urllib.request.urlopen(req, timeout=90).read()
-        img = recortar_3x2(Image.open(io.BytesIO(datos)).convert("RGB"))
+        destino_previo = os.path.join(SALIDA, f"{nombre}.jpg")
+        if os.path.exists(destino_previo):
+            peso = os.path.getsize(destino_previo)   # ya descargada
+            img = None
+        else:
+            req = urllib.request.Request(m["url"], headers=UA)
+            datos = urllib.request.urlopen(req, timeout=90).read()
+            img = recortar_3x2(Image.open(io.BytesIO(datos)).convert("RGB"))
 
         # Presupuesto por imagen: baja la calidad hasta entrar en 260 KB.
         # Una fuente ruidosa puede pesar el doble que otra a igual calidad, así
         # que fijar un número fijo de calidad no acota el peso (RNF-02).
         destino = os.path.join(SALIDA, f"{nombre}.jpg")
-        for q in (74, 68, 62, 56, 50):
-            img.save(destino, "JPEG", quality=q, optimize=True, progressive=True)
-            peso = os.path.getsize(destino)
-            if peso <= 260_000:
-                break
+        if img is not None:
+            for q in (74, 68, 62, 56, 50):
+                img.save(destino, "JPEG", quality=q, optimize=True, progressive=True)
+                peso = os.path.getsize(destino)
+                if peso <= 260_000:
+                    break
         total += peso
 
-        creditos.append({
-            "nombre": nombre, "titulo": titulo, "pie": pie,
-            "autor": m["autor"], "licencia": m["licencia"], "pagina": m["pagina"],
-        })
-        print(f"  {nombre + '.jpg':<20}{peso:>9,} B   {m['licencia']:<14} {m['autor'][:34]}")
+        # Solo se emite crédito si la licencia lo exige. Con CC0 el pie no
+        # aparece en la web; con CC BY sí, porque es condición de uso.
+        exige = not any(t in m["licencia"].lower() for t in SIN_CREDITO)
+        entrada = {"nombre": nombre, "titulo": titulo, "pie": pie,
+                   "autor": "", "licencia": m["licencia"], "pagina": m["pagina"]}
+        if exige:
+            entrada["autor"] = m["autor"]
+            print(f"  !! {nombre}: licencia {m['licencia']} EXIGE atribución; se mostrará el pie")
+        creditos.append(entrada)
+        print(f"  {nombre + '.jpg':<20}{peso:>9,} B   {m['licencia']:<14} {'(sin crédito)' if not exige else m['autor'][:30]}")
 
     with io.open(os.path.join(RAIZ, "app", "_contenido", "creditos.ts"), "w", encoding="utf-8") as f:
         f.write(

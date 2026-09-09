@@ -13,43 +13,43 @@ export type Credito = {
 
 export const CREDITOS: Credito[] = [
   {
-    "nombre": "agricultura",
-    "titulo": "Agricultura",
-    "pie": "Andenería, una tecnología agrícola de siglos.",
-    "autor": "J. Thompson",
-    "licencia": "Public domain",
-    "pagina": "https://commons.wikimedia.org/wiki/File%3APeru%20terrace%20farming.JPG"
+    "nombre": "turismo",
+    "titulo": "Patrimonio",
+    "pie": "Machu Picchu, Cusco.",
+    "autor": "",
+    "licencia": "CC0",
+    "pagina": "https://commons.wikimedia.org/wiki/File%3AMachu%20Picchu%2C%20Peru%20%28Unsplash%20T8tL9%201DRWA%29.jpg"
   },
   {
     "nombre": "sierra",
     "titulo": "Sierra",
-    "pie": "Cordillera Blanca, Áncash.",
-    "autor": "Renata Maria Cristina Borges",
-    "licencia": "CC BY-SA 4.0",
-    "pagina": "https://commons.wikimedia.org/wiki/File%3ATullparaju%20mountain%20and%20Tullparaju%20lake.jpg"
+    "pie": "Cañón del Colca, Arequipa.",
+    "autor": "",
+    "licencia": "CC0",
+    "pagina": "https://commons.wikimedia.org/wiki/File%3AColca%20Canyon%2C%20Chivay%2C%20Peru%20%28Unsplash%29.jpg"
   },
   {
-    "nombre": "pesqueria",
-    "titulo": "Pesquería",
-    "pie": "Puerto de Paracas, Ica.",
-    "autor": "Jon Kolbert",
-    "licencia": "CC BY-SA 4.0",
-    "pagina": "https://commons.wikimedia.org/wiki/File%3APuerto%20de%20Paracas%2C%20Per%C3%BA%2C%202019-10-17.jpg"
+    "nombre": "andes",
+    "titulo": "Territorio",
+    "pie": "Valle andino.",
+    "autor": "",
+    "licencia": "CC0",
+    "pagina": "https://commons.wikimedia.org/wiki/File%3AMountain%20valley%20in%20the%20Andes%20%28Unsplash%29.jpg"
   },
   {
-    "nombre": "turismo",
-    "titulo": "Turismo",
-    "pie": "Machu Picchu, Cusco.",
-    "autor": "Arabsalam",
-    "licencia": "CC BY-SA 4.0",
-    "pagina": "https://commons.wikimedia.org/wiki/File%3AMachu%20Picchu%20Peru%20100.jpg"
+    "nombre": "campo",
+    "titulo": "Diversidad",
+    "pie": "Maíces nativos del valle de Urubamba, Cusco.",
+    "autor": "",
+    "licencia": "CC0",
+    "pagina": "https://commons.wikimedia.org/wiki/File%3AUrubamba%20Province%2C%20Peru%20%28Unsplash%29.jpg"
   },
   {
-    "nombre": "ciudad",
-    "titulo": "Ciudad",
-    "pie": "Lima, capital y punto de encuentro del país.",
-    "autor": "Hector Becerra",
-    "licencia": "CC BY-SA 3.0",
-    "pagina": "https://commons.wikimedia.org/wiki/File%3ALima%20Peru%20City%20Skyline%202013.jpg"
+    "nombre": "costa",
+    "titulo": "Costa",
+    "pie": "Acantilado de la Costa Verde, Lima.",
+    "autor": "",
+    "licencia": "CC0",
+    "pagina": "https://commons.wikimedia.org/wiki/File%3ALa%20Marina%20Lighthouse%20cliffside%20%28Unsplash%29.jpg"
   }
 ];

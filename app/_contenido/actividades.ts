@@ -158,8 +158,10 @@ export const DESTACADOS_IDEARIO: Actividad[] = [
  * Ilustran el país del que habla el Ideario; presentarlas bajo "Nuestras
  * actividades" sí afirmaría hechos que no ocurrieron.
  *
- * La atribución se muestra en cada pie: es condición de la licencia CC, no un
- * detalle opcional. Se generan con `python scripts/descargar-fotos-peru.py`.
+ * Se usan solo imágenes CC0 / dominio público, que no exigen mostrar autoría:
+ * así el pie de crédito no aparece. Si alguna vez se añade una imagen CC BY,
+ * el script rellena `autor` y el crédito vuelve a mostrarse — porque entonces
+ * sí es condición de la licencia. Ver scripts/descargar-fotos-peru.py.
  */
 import { CREDITOS } from "./creditos";
 
@@ -170,5 +172,8 @@ export const FOTOS_PERU: Actividad[] = CREDITOS.map((c) => ({
   lugar: c.pie,
   ancho: 1400,
   alto: 933,
-  credito: { autor: c.autor, licencia: c.licencia, pagina: c.pagina },
+  // Solo cuando la licencia exige atribución (el script deja `autor` vacío si no)
+  ...(c.autor
+    ? { credito: { autor: c.autor, licencia: c.licencia, pagina: c.pagina } }
+    : {}),
 }));
