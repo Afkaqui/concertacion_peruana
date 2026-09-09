@@ -82,6 +82,17 @@ export const PUBLICACIONES: Publicacion[] = [
   //   url: "https://www.youtube.com/watch?v=XXXXXXXXXXX",
   //   incrustar: true,
   // },
+
+    {
+    slug: "2026-08-05-primer-video",
+    titulo: "Nuestro primer video",
+    extracto: "Un Perú para todos, que se construye unidos.",
+    fecha: "2026-08-05",
+    red: "tiktok",
+    url: "https://www.tiktok.com/@concertacionperuana/video/7670563775447076117",
+    incrustar: true,
+  },
+
 ];
 
 /**
