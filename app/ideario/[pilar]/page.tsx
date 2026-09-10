@@ -85,7 +85,7 @@ export default async function PaginaPilar({
           href={`/ideario/${siguiente.slug}`}
           className="group flex flex-col rounded-2xl border border-verde/15 bg-white p-6 transition-colors hover:border-verde/40 focus-visible:ring-2 focus-visible:ring-verde-profundo focus-visible:ring-offset-2 focus-visible:outline-none"
         >
-          <span className="text-xs font-semibold tracking-[0.18em] text-verde-profundo uppercase">
+          <span className="text-[13px] font-semibold tracking-[0.18em] text-verde-profundo uppercase">
             Siguiente pilar
           </span>
           <span className="mt-2 font-serif text-xl font-semibold text-verde-profundo group-hover:underline">

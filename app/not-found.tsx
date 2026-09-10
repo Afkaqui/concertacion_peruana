@@ -35,7 +35,11 @@ export default function NotFound() {
 
           <p
             data-anim="estado"
-            className="mt-7 font-serif text-5xl leading-none font-semibold tracking-tight text-verde/40 tabular-nums"
+            /* `text-verde/40` daba 1.44:1 sobre el verde claro de la página, y
+               ni el verde sólido llega a los 3:1 que la SC 1.4.3 exige incluso
+               para texto grande. Con el verde profundo al 75% queda en 3.42:1
+               y sigue leyéndose por detrás del <h1>, que es lo que se busca. */
+            className="mt-7 font-serif text-5xl leading-none font-semibold tracking-tight text-verde-profundo/75 tabular-nums"
           >
             404
           </p>

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
 
   title: {
-    default: "Concertación Peruana — Humanismo Teísta y Democracia Participativa",
+    default: "Concertación Peruana — Humanismo Teísta y Democracia",
     template: "%s | Concertación Peruana",
   },
 

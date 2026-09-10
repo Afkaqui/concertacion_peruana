@@ -29,7 +29,13 @@ export default function IdearioIndice() {
               >
                 <span
                   aria-hidden="true"
-                  className="font-serif text-xl font-semibold text-verde/50 tabular-nums"
+                  /* `text-verde/50` daba 1.81:1 sobre el blanco de la tarjeta.
+                     El número está oculto al lector de pantalla porque el orden
+                     ya lo da la lista, pero quien mira sí lo lee, así que le
+                     aplica el 4.5:1 de la SC 1.4.3 —600 no cuenta como negrita,
+                     de modo que 20px no llega a «texto grande»—. Al 90% del
+                     verde profundo queda en 4.99:1. */
+                  className="font-serif text-xl font-semibold text-verde-profundo/90 tabular-nums"
                 >
                   {i + 1}
                 </span>

@@ -11,6 +11,8 @@
 export type PilarIdeario = {
   slug: string;
   nombre: string;
+  /** Título para buscadores, si el nombre completo es demasiado largo */
+  nombreSeo?: string;
   /** Cita literal del Ideario */
   ancla: string;
   /** Resumen de una línea, para índices y metadatos */
@@ -103,6 +105,8 @@ export const IDEARIO: PilarIdeario[] = [
   {
     slug: "identidad-nacional",
     nombre: "Identidad Nacional y Unidad en la Diversidad",
+    // El nombre completo + " | Concertación Peruana" da 67 caracteres
+    nombreSeo: "Identidad Nacional",
     ancla: "Un solo Perú, diverso y fraterno.",
     sumario: "Un país de todas las sangres: la diversidad como mayor riqueza.",
     descripcion:

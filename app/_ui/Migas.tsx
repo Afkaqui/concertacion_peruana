@@ -47,13 +47,17 @@ export default function Migas({ path }: { path: string }) {
                   </span>
                 )}
                 {ultimo ? (
-                  <span aria-current="page" className="text-verde-profundo">
+                  <span aria-current="page" className="inline-flex min-h-8 items-center text-verde-profundo">
                     {m.nombre}
                   </span>
                 ) : (
                   <Link
                     href={m.path || "/"}
-                    className="underline-offset-4 hover:text-verde-profundo hover:underline focus-visible:ring-2 focus-visible:ring-verde-profundo focus-visible:outline-none"
+                    /* min-h-8: el enlace medía 20px de alto, por debajo de los
+                       24px que exige WCAG 2.2 para un objetivo táctil. No son
+                       enlaces dentro de una frase, así que no les aplica la
+                       excepción de los enlaces en línea. */
+                    className="inline-flex min-h-8 items-center underline-offset-4 hover:text-verde-profundo hover:underline focus-visible:ring-2 focus-visible:ring-verde-profundo focus-visible:outline-none"
                   >
                     {m.nombre}
                   </Link>

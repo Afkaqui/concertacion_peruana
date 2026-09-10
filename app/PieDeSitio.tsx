@@ -54,7 +54,7 @@ export default function PieDeSitio() {
                 <p className="font-serif text-lg leading-tight font-semibold">
                   Concertación Peruana
                 </p>
-                <p className="mt-1 text-xs font-semibold tracking-[0.18em] text-white/85 uppercase">
+                <p className="mt-1 text-[13px] font-semibold tracking-[0.18em] text-white/85 uppercase">
                   Dios · Patria · Familia
                 </p>
               </div>
@@ -68,7 +68,7 @@ export default function PieDeSitio() {
 
           {/* Secciones */}
           <nav aria-label="Secciones del sitio">
-            <h2 className="text-xs font-semibold tracking-[0.18em] text-white/85 uppercase">
+            <h2 className="text-[13px] font-semibold tracking-[0.18em] text-white/85 uppercase">
               Secciones
             </h2>
             <ul className="mt-3 grid gap-1">
@@ -87,7 +87,7 @@ export default function PieDeSitio() {
 
           {/* Redes */}
           <nav aria-label="Redes sociales">
-            <h2 className="text-xs font-semibold tracking-[0.18em] text-white/85 uppercase">
+            <h2 className="text-[13px] font-semibold tracking-[0.18em] text-white/85 uppercase">
               Síguenos
             </h2>
             <ul className="mt-3 grid gap-1">
@@ -120,7 +120,10 @@ export default function PieDeSitio() {
           © {ANIO} Concertación Peruana ·{" "}
           <Link
             href="/"
-            className="underline-offset-4 transition-colors hover:underline"
+            /* Va dentro de una frase, así que le aplicaría la excepción de
+               enlace en línea de la SC 2.5.8; el relleno vertical lo lleva
+               igualmente a 25px de alto sin romper el renglón. */
+            className="inline-block py-1 underline-offset-4 transition-colors hover:underline"
           >
             concertacionperuana.pe
           </Link>

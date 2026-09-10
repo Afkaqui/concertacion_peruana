@@ -45,7 +45,7 @@ export default function Portada({
 
       <div className="mx-auto w-full max-w-3xl px-6 py-16 text-center sm:py-24">
         {antetitulo && (
-          <p className="text-xs font-semibold tracking-[0.18em] text-white uppercase">
+          <p className="text-[13px] font-semibold tracking-[0.18em] text-white uppercase">
             {antetitulo}
           </p>
         )}

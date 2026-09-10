@@ -18,7 +18,7 @@ export const SITE_URL = "https://concertacionperuana.pe";
 export const SITE_NAME = "Concertación Peruana";
 
 /** Fecha real de última edición del contenido (no la del despliegue). */
-export const EDICION = "2026-09-01";
+export const EDICION = "2026-09-10";
 
 export type Ruta = {
   path: string;
@@ -45,7 +45,7 @@ export const RUTAS: Ruta[] = [
   {
     path: "",
     og: "inicio",
-    titulo: "Concertación Peruana — Humanismo Teísta y Democracia Participativa",
+    titulo: "Concertación Peruana — Humanismo Teísta y Democracia",
     descripcion:
       "Organización política peruana inspirada en el Humanismo Teísta. Democracia Participativa, Concertación, Fraternidad y Unidad en la Diversidad.",
     ogAlt: "Concertación Peruana — Dios, Patria, Familia",
@@ -56,7 +56,7 @@ export const RUTAS: Ruta[] = [
     og: "institucional",
     titulo: "Institucional",
     descripcion:
-      "Visión, misión y objetivos estratégicos de la Asociación de la Concertación Peruana: institucionalidad, participación ciudadana, desarrollo sostenible y transparencia.",
+      "Visión, misión y objetivos estratégicos de la Asociación de la Concertación Peruana: institucionalidad, participación, desarrollo y transparencia.",
     ogAlt: "Propuesta institucional — visión, misión y objetivos estratégicos",
     palabrasClave: [...COMUNES, "visión y misión", "objetivos estratégicos", "propuesta institucional"],
     migas: [{ nombre: "Institucional", path: "/institucional" }],
@@ -74,7 +74,9 @@ export const RUTAS: Ruta[] = [
   ...IDEARIO.map((p) => ({
     path: `/ideario/${p.slug}`,
     og: `ideario-${p.slug}`,
-    titulo: p.nombre,
+    // `nombreSeo` existe solo cuando el nombre completo, más la marca que
+    // añade `title.template`, pasa de 60 caracteres y Google lo trunca.
+    titulo: p.nombreSeo ?? p.nombre,
     descripcion: p.descripcion,
     ogAlt: `${p.nombre} — ${p.sumario}`,
     palabrasClave: [...COMUNES, p.nombre.toLowerCase(), "ideario"],
@@ -98,7 +100,7 @@ export const RUTAS: Ruta[] = [
     og: "partido",
     titulo: "Partido de la Concertación Peruana",
     descripcion:
-      "El Partido de la Concertación Peruana es el proyecto político que impulsa la Asociación de la Concertación Peruana, actualmente en proceso de constitución formal.",
+      "Proyecto político impulsado por la Asociación de la Concertación Peruana, hoy en proceso de constitución formal como partido político.",
     ogAlt: "Partido de la Concertación Peruana — en proceso de constitución",
     palabrasClave: [...COMUNES, "partido en formación", "inscripción JNE", "organización política"],
     migas: [{ nombre: "El Partido", path: "/partido" }],

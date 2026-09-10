@@ -34,7 +34,7 @@ export function EncabezadoPagina({
   return (
     <header className="mx-auto w-full max-w-3xl px-6 pt-14 pb-10 text-center sm:pt-20">
       {antetitulo && (
-        <p className="text-xs font-semibold tracking-[0.18em] text-verde-profundo uppercase">
+        <p className="text-[13px] font-semibold tracking-[0.18em] text-verde-profundo uppercase">
           {antetitulo}
         </p>
       )}
@@ -141,7 +141,7 @@ export function Aviso({
     <aside
       className={`overflow-hidden rounded-2xl border border-verde/20 bg-white ${SOMBRA}`}
     >
-      <p className="flex items-center gap-2 bg-verde-profundo px-6 py-3 text-xs font-semibold tracking-[0.18em] text-white uppercase">
+      <p className="flex items-center gap-2 bg-verde-profundo px-6 py-3 text-[13px] font-semibold tracking-[0.18em] text-white uppercase">
         <svg
           viewBox="0 0 24 24"
           aria-hidden="true"
