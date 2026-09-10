@@ -101,6 +101,16 @@ export const PUBLICACIONES: Publicacion[] = [
     imagen: "/publicaciones/2026-08-05-primer-video.jpg",
     incrustar: true,
   },
+  {
+    slug: "2026-09-04-fiestas-patrias",
+    titulo: "NOSOTROS CONSTRUIMOS 💚",
+    extracto: "NOSOTROS CONSTRUIMOS 💚",
+    fecha: "2026-09-04",
+    red: "instagram",
+    url: "https://www.instagram.com/p/Dc4dSLsul3c/",
+    imagen: "/publicaciones/2026-09-04-fiestas-patrias.jpg",
+    incrustar: true,
+  },
 
 ];
 

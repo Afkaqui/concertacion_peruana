@@ -34,6 +34,9 @@ export default function IncrustadoRed({
   url: string;
   titulo: string;
 }) {
+  // Nota: si la red limita las peticiones o el marco falla, el contenido es
+  // de otro origen y no se puede detectar desde aquí. Por eso siempre queda
+  // visible una salida al enlace original, debajo del marco.
   const [cargado, setCargado] = useState(false);
   const src = urlIncrustado(red, url);
 
@@ -61,7 +64,11 @@ export default function IncrustadoRed({
     // basis-full fuerza una línea propia dentro de la fila de botones
     <div className="basis-full">
       <div
-        className={`w-full max-w-md overflow-hidden rounded-xl border border-verde/15 bg-white ${PROPORCION[red]}`}
+        /* max-w-sm en los verticales: a 448 px de ancho, un 9:16 mide 776 px
+           de alto y domina la página entera */
+        className={`w-full overflow-hidden rounded-xl border border-verde/15 bg-white ${
+          red === "youtube" ? "max-w-lg" : "max-w-sm"
+        } ${PROPORCION[red]}`}
       >
         <iframe
           src={src}
@@ -74,6 +81,19 @@ export default function IncrustadoRed({
           sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-presentation"
         />
       </div>
+
+      <p className="mt-2 text-xs text-gris-medio">
+        ¿No se ve?{" "}
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 hover:text-verde-profundo"
+        >
+          Ábrelo en {nombre}
+        </a>
+        .
+      </p>
     </div>
   );
 }

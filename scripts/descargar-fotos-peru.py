@@ -8,6 +8,10 @@ POR QUÉ COMMONS Y NO UN BANCO DE IMÁGENES:
     la imagen de alguien reconocible puede leerse como respaldo suyo, y los
     bancos comerciales lo restringen justamente por eso.
 
+    ESTO NO LO PUEDE COMPROBAR EL SCRIPT. El título de un archivo de Commons
+    no dice si hay caras dentro: "Cusco, Peru" resultó ser el primer plano de
+    una señora identificable. ABRE CADA IMAGEN Y MÍRALA antes de publicarla.
+
 SOLO SE ACEPTAN CC0 Y DOMINIO PÚBLICO. Las licencias CC BY y CC BY-SA exigen
 mostrar la autoría junto a la imagen, y ese pie resultaba intrusivo en el
 carrusel. Con CC0 no hace falta crédito y el pie desaparece — legalmente, no
@@ -54,7 +58,11 @@ FOTOS = [
 # Portadas de sección: una imagen ancha por página, en public/portadas/
 # (mismo criterio: solo CC0, sin personas identificables)
 PORTADAS = [
-    ("ideario", "Cusco, Peru (Unsplash JaqX7DfKySs).jpg"),
+    # Sustituida: la anterior ("Cusco, Peru (Unsplash JaqX7DfKySs)") era un
+    # primer plano de una señora perfectamente identificable. En la página del
+    # Ideario de un partido, un rostro reconocible se lee como respaldo de esa
+    # persona. Regla: paisaje, sin caras.
+    ("ideario", "Ollantaytambo, Peru (Unsplash imQGQL0VV4s).jpg"),
     ("partido", "Mighty peak above clouds (Unsplash).jpg"),
     ("institucional", "Inca Trail mountain (Unsplash).jpg"),
     ("actualidad", "Sun over green mountains (Unsplash).jpg"),

@@ -50,7 +50,12 @@ export default function Actualidad() {
                       width={900}
                       height={600}
                       loading="lazy"
-                      className="aspect-[3/2] w-full object-cover sm:aspect-auto sm:w-56 sm:shrink-0"
+                      /* self-start y proporción fija en TODOS los tamaños:
+                         en una fila flex la imagen se estira a la altura de la
+                         tarjeta, y al abrir el incrustado esa altura pasa de
+                         217 px a 1007 px — la miniatura quedaba como una tira
+                         vertical recortada. */
+                      className="aspect-[3/2] w-full self-start object-cover sm:w-56 sm:shrink-0"
                     />
                   )}
 

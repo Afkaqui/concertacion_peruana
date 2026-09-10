@@ -12,10 +12,9 @@ Ejemplo:
 De dónde sale la miniatura:
   TikTok   → API oEmbed pública (no necesita token)
   YouTube  → img.youtube.com, portada pública del vídeo
-  Facebook
-  Instagram → NO tienen miniatura pública sin token de app. Para estas, guarda
-              una captura o la propia imagen del post en public/publicaciones/
-              con el nombre <slug>.jpg y añade la línea a mano.
+  Instagram → se extrae del HTML de su página /embed (clase EmbeddedMediaImage)
+  Facebook  → NO expone miniatura pública sin token de app. Para esa red guarda
+              la imagen a mano en public/publicaciones/<slug>.jpg
 
 Se guarda en public/publicaciones/<slug>.jpg, recortada a 3:2 y por debajo de
 180 KB, porque la miniatura de la tarjeta es pequeña y no justifica más.
@@ -52,10 +51,27 @@ def url_miniatura(url: str):
     if m and ("youtube" in url or "youtu.be" in url):
         return f"https://img.youtube.com/vi/{m.group(1)}/maxresdefault.jpg", "youtube"
 
+    if "instagram.com" in url:
+        # La página /embed incluye la imagen del post en un <img> con esta
+        # clase. No hace falta token, pero es HTML de terceros: si Instagram
+        # cambia el marcado, se devuelve None y el script lo dice claramente.
+        m = re.search(r"instagram\.com/(p|reel|tv)/([A-Za-z0-9_-]+)", url)
+        if not m:
+            return None, "instagram"
+        emb = f"https://www.instagram.com/{m.group(1)}/{m.group(2)}/embed"
+        try:
+            html = urllib.request.urlopen(
+                urllib.request.Request(emb, headers=UA), timeout=40
+            ).read().decode("utf-8", "ignore")
+        except Exception:
+            return None, "instagram"
+        f = re.search(r'class="EmbeddedMediaImage"[^>]*src="([^"]+)"', html)
+        if not f:
+            return None, "instagram"
+        return f.group(1).replace("&amp;", "&"), "instagram"
+
     if "facebook.com" in url:
         return None, "facebook"
-    if "instagram.com" in url:
-        return None, "instagram"
     return None, "desconocida"
 
 
