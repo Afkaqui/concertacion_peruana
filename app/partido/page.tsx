@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "../_ui/Enlace";
-import { Seccion } from "../_ui/Pagina";
+import { Seccion, Aviso } from "../_ui/Pagina";
 import { PILARES } from "../_contenido/institucional";
 import { metadataDe } from "../_contenido/rutas";
 import Portada from "../_ui/Portada";
@@ -38,11 +38,8 @@ export default function Partido() {
       {/* Aviso de estado. Va arriba y sin rodeos: es lo primero que un
           periodista, una autoridad electoral o un ciudadano necesita saber. */}
       <Seccion>
-        <div className="rounded-2xl border border-verde/30 bg-white p-6 sm:p-7">
-          <p className="text-xs font-semibold tracking-[0.18em] text-verde-profundo uppercase">
-            Estado actual
-          </p>
-          <p className="mt-3 text-lg text-grafito">
+        <Aviso etiqueta="Estado actual">
+          <p className="text-lg text-grafito">
             El Partido de la Concertación Peruana se encuentra{" "}
             <strong className="font-semibold">en proceso de constitución</strong>.
             Su inscripción y consolidación formal es uno de los objetivos
@@ -53,7 +50,7 @@ export default function Partido() {
             Peruana es la organización que desarrolla la base doctrinaria,
             programática y territorial del proyecto.
           </p>
-        </div>
+        </Aviso>
       </Seccion>
 
       <Seccion titulo="Qué nos proponemos">

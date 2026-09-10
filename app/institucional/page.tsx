@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Seccion, Tarjeta } from "../_ui/Pagina";
+import { Seccion, Tarjeta, TarjetaNumerada } from "../_ui/Pagina";
 import { VISION, MISION, PILARES, MATRIZ } from "../_contenido/institucional";
 import { metadataDe } from "../_contenido/rutas";
 import Portada from "../_ui/Portada";
@@ -37,31 +37,21 @@ export default function Institucional() {
 
         <div className="grid gap-6">
           {PILARES.map((p) => (
-            <article
-              key={p.n}
-              className="rounded-2xl border border-verde/15 bg-white p-6 sm:p-7"
-            >
-              <div className="flex items-baseline gap-3">
-                <span
-                  aria-hidden="true"
-                  className="font-serif text-2xl font-semibold text-verde/50 tabular-nums"
-                >
-                  {p.n}
-                </span>
-                <h3 className="font-serif text-xl leading-snug font-semibold text-balance text-verde-profundo">
-                  {p.nombre}
-                </h3>
-              </div>
-
-              <dl className="mt-5 grid gap-4">
-                {p.objetivos.map((o) => (
-                  <div key={o.titulo}>
+            <TarjetaNumerada key={p.n} n={p.n} titulo={p.nombre}>
+              <dl className="grid gap-4">
+                {p.objetivos.map((o, i) => (
+                  <div
+                    key={o.titulo}
+                    /* Filete entre objetivos: sin él los dos bloques de cada
+                       pilar se leen como un solo texto corrido */
+                    className={i > 0 ? "border-t border-verde/12 pt-4" : ""}
+                  >
                     <dt className="font-semibold text-grafito">{o.titulo}</dt>
                     <dd className="mt-1 text-gris-medio">{o.texto}</dd>
                   </div>
                 ))}
               </dl>
-            </article>
+            </TarjetaNumerada>
           ))}
         </div>
       </Seccion>
