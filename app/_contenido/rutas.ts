@@ -29,6 +29,12 @@ export type Ruta = {
   /** Texto alternativo de la tarjeta social */
   ogAlt: string;
   palabrasClave: string[];
+  /**
+   * Salta la plantilla «%s | Concertación Peruana». Solo para títulos que ya
+   * contienen la marca: sin esto, /partido saldría en el buscador como
+   * «Partido de la Concertación Peruana | Concertación Peruana».
+   */
+  tituloAbsoluto?: boolean;
   /** Miga de pan; la raíz (Inicio) se añade sola */
   migas?: { nombre: string; path: string }[];
 };
@@ -99,6 +105,7 @@ export const RUTAS: Ruta[] = [
     path: "/partido",
     og: "partido",
     titulo: "Partido de la Concertación Peruana",
+    tituloAbsoluto: true,
     descripcion:
       "Proyecto político impulsado por la Asociación de la Concertación Peruana, hoy en proceso de constitución formal como partido político.",
     ogAlt: "Partido de la Concertación Peruana — en proceso de constitución",
@@ -129,7 +136,9 @@ export function metadataDe(path: string, extra: Metadata = {}): Metadata {
 
   return {
     // La portada usa el título por defecto del layout (lleva la marca dentro)
-    ...(path === "" ? {} : { title: r.titulo }),
+    ...(path === ""
+      ? {}
+      : { title: r.tituloAbsoluto ? { absolute: r.titulo } : r.titulo }),
     description: r.descripcion,
     keywords: r.palabrasClave,
     alternates: { canonical: path === "" ? "/" : path },
