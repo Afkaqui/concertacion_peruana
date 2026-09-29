@@ -102,6 +102,16 @@ export const RUTAS: Ruta[] = [
     migas: [{ nombre: "Actualidad", path: "/actualidad" }],
   },
   {
+    path: "/bolsa-laboral",
+    og: "bolsa-laboral",
+    titulo: "Bolsa Laboral",
+    descripcion:
+      "Convocatorias laborales y de voluntariado afines a los principios de la Concertación Peruana. Publicamos y enlazamos a la fuente: no recogemos datos.",
+    ogAlt: "Bolsa Laboral — oportunidades afines a nuestros principios",
+    palabrasClave: [...COMUNES, "bolsa laboral", "convocatorias", "voluntariado", "empleo Perú"],
+    migas: [{ nombre: "Bolsa Laboral", path: "/bolsa-laboral" }],
+  },
+  {
     path: "/partido",
     og: "partido",
     titulo: "Partido de la Concertación Peruana",

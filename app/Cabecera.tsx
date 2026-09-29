@@ -14,6 +14,7 @@ const ENLACES = [
   { href: "/ideario", texto: "Ideario" },
   { href: "/partido", texto: "Partido" },
   { href: "/actualidad", texto: "Actualidad" },
+  { href: "/bolsa-laboral", texto: "Bolsa Laboral" },
 ];
 
 export default function Cabecera() {

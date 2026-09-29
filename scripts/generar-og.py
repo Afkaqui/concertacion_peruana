@@ -39,6 +39,7 @@ TARJETAS = [
     ("ideario", "Ideario", "Seis pilares, una convicción", "La doctrina que orienta cada decisión."),
     ("partido", "Proyecto político", "Partido de la Concertación Peruana", "En proceso de constitución."),
     ("actualidad", "Actualidad", "Lo que venimos publicando", "Noticias, comunicados y actividades."),
+    ("bolsa-laboral", "Bolsa Laboral", "Oportunidades afines a nuestros principios", "Convocatorias laborales y de voluntariado."),
     ("ideario-humanismo-teista", "Ideario", "Humanismo Teísta", "La persona como centro y fin."),
     ("ideario-democracia-participativa", "Ideario", "Democracia Participativa", "El ciudadano decide, no solo elige."),
     ("ideario-fraternidad", "Ideario", "Fraternidad", "El lazo que nos une."),
