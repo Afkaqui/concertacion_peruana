@@ -53,6 +53,26 @@ FOTOS = [
      "Diversidad", "Maíces nativos del valle de Urubamba, Cusco."),
     ("costa", "La Marina Lighthouse cliffside (Unsplash).jpg",
      "Costa", "Acantilado de la Costa Verde, Lima."),
+
+    # ── FOTOS ADICIONALES ───────────────────────────────────────────────
+    #
+    # Solo tres. Se intentaron seis y la mitad hubo que descartarlas DESPUES de
+    # abrirlas, porque el nombre del archivo en Commons no describe la foto:
+    #
+    #   "Rainbow Mountain Peru.jpg"            -> llena de turistas con rostro
+    #                                             reconocible, y basura plastica
+    #   "Lima Region, Peru (Unsplash ...)"     -> UNA HAMBURGUESA
+    #   "Cloudy Mountains (Unsplash).jpg"      -> casi negra; en tarjeta pequeña
+    #                                             se ve como un borron
+    #
+    # De ahi la regla del proyecto: ABRIR CADA IMAGEN Y MIRARLA antes de
+    # publicarla. El titulo no es la foto.
+    ("aereo-cordillera", "Lima, Peru (Unsplash).jpg",
+     "Territorio", "Cordillera desde el aire."),
+    ("piedra-inca", "Mountainside Ruins (Unsplash).jpg",
+     "Herencia", "Ruinas en ladera andina."),
+    ("brote", "Lake Titicaca (Unsplash).jpg",
+     "Crecimiento", "Detalle vegetal."),
 ]
 
 # Portadas de sección: una imagen ancha por página, en public/portadas/

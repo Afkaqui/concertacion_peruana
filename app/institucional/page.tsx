@@ -4,6 +4,7 @@ import { VISION, MISION, PILARES, MATRIZ } from "../_contenido/institucional";
 import { metadataDe } from "../_contenido/rutas";
 import Portada from "../_ui/Portada";
 import Migas from "../_ui/Migas";
+import Revelar from "../_ui/Revelar";
 
 export const metadata: Metadata = metadataDe("/institucional");
 
@@ -19,14 +20,14 @@ export default function Institucional() {
       />
 
       <Seccion>
-        <div className="grid gap-5">
+        <Revelar className="grid gap-5">
           <Tarjeta titulo="Visión">
             <p>{VISION}</p>
           </Tarjeta>
           <Tarjeta titulo="Misión">
             <p>{MISION}</p>
           </Tarjeta>
-        </div>
+        </Revelar>
       </Seccion>
 
       <Seccion titulo="Objetivos estratégicos">
@@ -35,7 +36,7 @@ export default function Institucional() {
           concretos.
         </p>
 
-        <div className="grid gap-6">
+        <Revelar className="grid gap-6">
           {PILARES.map((p) => (
             <TarjetaNumerada key={p.n} n={p.n} titulo={p.nombre}>
               <dl className="grid gap-4">
@@ -53,7 +54,7 @@ export default function Institucional() {
               </dl>
             </TarjetaNumerada>
           ))}
-        </div>
+        </Revelar>
       </Seccion>
 
       <Seccion titulo="Matriz de alineamiento estratégico">

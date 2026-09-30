@@ -6,6 +6,7 @@ import { IDEARIO, porSlug } from "../../_contenido/ideario";
 import { metadataDe } from "../../_contenido/rutas";
 import Migas from "../../_ui/Migas";
 import Portada from "../../_ui/Portada";
+import Revelar from "../../_ui/Revelar";
 
 /** Fotografía de portada, una por pilar. */
 const PORTADAS_PILAR = [
@@ -66,7 +67,7 @@ export default async function PaginaPilar({
       </Seccion>
 
       <Seccion titulo="Qué significa en la práctica">
-        <ul className="grid gap-3">
+        <Revelar as="ul" escalonado={80} className="grid gap-3">
           {p.practica.map((t, n) => (
             <li
               key={n}
@@ -76,7 +77,7 @@ export default async function PaginaPilar({
               <span className="text-gris-medio">{t}</span>
             </li>
           ))}
-        </ul>
+        </Revelar>
       </Seccion>
 
       {/* Se lee como recorrido, no como archivo (doc. 02 §4.4) */}

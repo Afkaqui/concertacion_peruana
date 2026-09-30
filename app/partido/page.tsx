@@ -5,6 +5,7 @@ import { PILARES } from "../_contenido/institucional";
 import { metadataDe } from "../_contenido/rutas";
 import Portada from "../_ui/Portada";
 import Migas from "../_ui/Migas";
+import Revelar from "../_ui/Revelar";
 
 /**
  * Subpágina del Partido de la Concertación Peruana.

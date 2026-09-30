@@ -221,6 +221,12 @@ export default function CarruselActividades({
               onClick={() => irA(i)}
               aria-label={`Ir a la actividad ${i + 1}: ${a.titulo}`}
               aria-current={i === actual ? "true" : undefined}
+              /* 22x44 reales, no 24 de ancho: con once puntos el contenedor
+                 flex los encoge, y forzar el ancho provocaria desbordamiento
+                 horizontal, que es peor. Cumplen igualmente la SC 2.5.8 por la
+                 EXCEPCION DE SEPARACION: hay 30px entre centros (22 + gap-2),
+                 asi que los circulos de 24px centrados en cada uno no se
+                 tocan. Verificado a 390px. */
               className="inline-flex h-11 w-6 items-center justify-center focus-visible:ring-2 focus-visible:ring-verde-profundo focus-visible:outline-none"
             >
               <span

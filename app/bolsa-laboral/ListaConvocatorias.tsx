@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Revelar from "../_ui/Revelar";
 import {
   API,
   MODALIDADES,
@@ -54,7 +55,7 @@ export default function ListaConvocatorias({
   }
 
   return (
-    <ul className="grid gap-5">
+    <Revelar as="ul" escalonado={80} className="grid gap-5">
       {convocatorias.map((c) => (
         <li key={c.id}>
           <article className="flex h-full flex-col rounded-2xl border border-verde/12 bg-white p-6 shadow-[0_1px_2px_rgba(28,43,35,0.04),0_12px_32px_-20px_rgba(0,113,63,0.35)] sm:p-7">
@@ -127,6 +128,6 @@ export default function ListaConvocatorias({
           </article>
         </li>
       ))}
-    </ul>
+    </Revelar>
   );
 }

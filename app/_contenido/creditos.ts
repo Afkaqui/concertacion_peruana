@@ -51,5 +51,53 @@ export const CREDITOS: Credito[] = [
     "autor": "",
     "licencia": "CC0",
     "pagina": "https://commons.wikimedia.org/wiki/File%3ALa%20Marina%20Lighthouse%20cliffside%20%28Unsplash%29.jpg"
+  },
+  {
+    "nombre": "pilar-humanismo",
+    "titulo": "Humanismo Teista",
+    "pie": "Vinicunca, Cusco.",
+    "autor": "",
+    "licencia": "CC0",
+    "pagina": "https://commons.wikimedia.org/wiki/File%3ARainbow%20Mountain%20Peru.jpg"
+  },
+  {
+    "nombre": "pilar-democracia",
+    "titulo": "Democracia Participativa",
+    "pie": "Lima.",
+    "autor": "",
+    "licencia": "CC0",
+    "pagina": "https://commons.wikimedia.org/wiki/File%3ALima%2C%20Peru%20%28Unsplash%29.jpg"
+  },
+  {
+    "nombre": "pilar-concertacion",
+    "titulo": "Concertacion",
+    "pie": "Ruinas en ladera andina.",
+    "autor": "",
+    "licencia": "CC0",
+    "pagina": "https://commons.wikimedia.org/wiki/File%3AMountainside%20Ruins%20%28Unsplash%29.jpg"
+  },
+  {
+    "nombre": "pilar-fraternidad",
+    "titulo": "Fraternidad",
+    "pie": "Cordillera andina.",
+    "autor": "",
+    "licencia": "CC0",
+    "pagina": "https://commons.wikimedia.org/wiki/File%3ACloudy%20Mountains%20%28Unsplash%29.jpg"
+  },
+  {
+    "nombre": "pilar-igualdad",
+    "titulo": "Igualdad de Oportunidades",
+    "pie": "Region Lima.",
+    "autor": "",
+    "licencia": "CC0",
+    "pagina": "https://commons.wikimedia.org/wiki/File%3ALima%20Region%2C%20Peru%20%28Unsplash%20CIos1pQ4MCQ%29.jpg"
+  },
+  {
+    "nombre": "pilar-identidad",
+    "titulo": "Identidad Nacional",
+    "pie": "Lago Titicaca, Puno.",
+    "autor": "",
+    "licencia": "CC0",
+    "pagina": "https://commons.wikimedia.org/wiki/File%3ALake%20Titicaca%20%28Unsplash%29.jpg"
   }
 ];

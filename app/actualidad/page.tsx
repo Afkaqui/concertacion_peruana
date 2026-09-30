@@ -3,6 +3,7 @@ import { Seccion } from "../_ui/Pagina";
 import Portada from "../_ui/Portada";
 import Image from "next/image";
 import Migas from "../_ui/Migas";
+import Revelar from "../_ui/Revelar";
 import IncrustadoRed from "../_ui/IncrustadoRed";
 import { metadataDe } from "../_contenido/rutas";
 import {
@@ -35,7 +36,7 @@ export default function Actualidad() {
 
       {hay ? (
         <Seccion>
-          <ol className="grid gap-5">
+          <Revelar as="ol" escalonado={80} className="grid gap-5">
             {PUBLICACIONES.map((p) => {
               const red = REDES_INFO[p.red];
               return (
@@ -101,7 +102,7 @@ export default function Actualidad() {
                 </li>
               );
             })}
-          </ol>
+          </Revelar>
         </Seccion>
       ) : (
         /* Estado honesto: la organización sí publica, solo que todavía no se ha
