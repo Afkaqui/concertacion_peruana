@@ -35,6 +35,26 @@ for (const archivo of readdirSync(CONTENIDO).filter((f) => f.endsWith(".ts"))) {
   }
 }
 
+/**
+ * Las fotos del carrusel NO las detecta lo anterior: `creditos.ts` guarda
+ * solo el `nombre` y la ruta se arma en ejecucion como `/peru/<nombre>.jpg`,
+ * asi que la expresion de rutas literales no ve ninguna.
+ *
+ * Ese hueco costo un fallo real: se renombraron y borraron fotos en disco,
+ * `creditos.ts` —que es GENERADO— se quedo apuntando a los nombres viejos, y
+ * el carrusel de la portada mostro seis recuadros rotos con el texto
+ * alternativo a la vista. La compilacion paso sin una sola queja.
+ *
+ * Se comprueba aparte, por nombre.
+ */
+const creditos = join(CONTENIDO, "creditos.ts");
+if (existsSync(creditos)) {
+  const texto = readFileSync(creditos, "utf8");
+  for (const m of texto.matchAll(/"nombre":\s*"([^"]+)"/g)) {
+    rutas.add("/peru/" + m[1] + ".jpg");
+  }
+}
+
 const faltan = [...rutas].filter((r) => !existsSync(join(PUBLIC, r)));
 
 if (faltan.length) {
